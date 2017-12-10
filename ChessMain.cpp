@@ -3,36 +3,36 @@
 using namespace std;
 
 #include "ChessBoard.h"
-
+#include "helper.h"
 int main() {
-
-    cout << "===========================" << endl;
-    cout << "Testing the Chess Engine" << endl;
-    cout << "===========================" << endl;
-    cout << endl;
-
+    //
+    // cout << "===========================" << endl;
+    // cout << "Testing the Chess Engine" << endl;
+    // cout << "===========================" << endl;
+    // cout << endl;
+    //
     ChessBoard cb;
-    cout << endl;
+    // cout << endl;
+    //
+    // cb.submitMove("D7", "D6");
+    // cout << endl;
+    //
+    // cb.submitMove("D4", "H6");
+    // cout << endl;
+    //
+    // cb.submitMove("D2", "D4");
+    // cout << endl;
+    //
+    // cb.submitMove("F8", "B4");
+    // cout << endl;
+    // cb.printBoard();
+    // cout << "===========================" << endl;
+    // cout << "Alekhine vs. Vasic (1931)" << endl;
+    // cout << "===========================" << endl;
+    // cout << endl;
 
-    cb.submitMove("D7", "D6");
-    cout << endl;
-
-    cb.submitMove("D4", "H6");
-    cout << endl;
-
-    cb.submitMove("D2", "D4");
-    cout << endl;
-
-    cb.submitMove("F8", "B4");
-    cout << endl;
-
-    cout << "===========================" << endl;
-    cout << "Alekhine vs. Vasic (1931)" << endl;
-    cout << "===========================" << endl;
-    cout << endl;
-
-    cb.resetBoard();
-    cout << endl;
+    // cb.resetBoard();
+    // cout << endl;
 
     cb.submitMove("E2", "E4");
     cb.submitMove("E7", "E6");
@@ -49,7 +49,7 @@ int main() {
     cb.submitMove("F1", "D3");
     cb.submitMove("B4", "C3");
     cout << endl;
-
+    //
     cb.submitMove("B2", "C3");
     cb.submitMove("H7", "H6");
     cout << endl;
