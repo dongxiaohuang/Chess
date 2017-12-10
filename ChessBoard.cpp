@@ -276,13 +276,13 @@ void ChessBoard::submitMove(string from, string to)
         if(is_White_Checked)
           {
             if(checkMate(WHITE))
-              {cout << "White is in checkMate" << endl;exit(GAME_OVER);}
+              {cout << "White is in checkMate";exit(GAME_OVER);}
             else  cout <<"White is in check" << endl; // the enemy
           }
         if(is_Black_Checked)
           {
             if(checkMate(BLACK))
-              {cout << "Black is in checkmate" << endl;exit(GAME_OVER);}
+              {cout << "Black is in checkmate";exit(GAME_OVER);}
             else cout <<"Black is in check" << endl; // the enemy
           }
       }
