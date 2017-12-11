@@ -1,7 +1,3 @@
-//
-// Created by Dongxiao Huang on 04/12/2017.
-//
-
 #include "helper.h"
 int getFileIndex(string coor)
 {
@@ -30,7 +26,7 @@ int getRankIndex(string coor)
   if(file>8)
     {
       cerr << "please input digital number in between 1-8" <<endl;
-      return -1; // TODO :makesure no exit
+      return -1; 
     }
   if(file ==0 && coor[1] != '0')
     {

@@ -1,12 +1,5 @@
 #include "Rook.h"
-// Rook::Rook(string name, Color color, ChessBoard* cb):Chess(name,color,cb){}
-// bool Rook::isValidMove(int from_rank, int from_file, int to_rank, int to_file)
-// {
-//   cout << "Knight check"<<endl;
-//   return true;
-// }
-Rook::Rook(string name, Color color, ChessBoard* cb):Chess(name,color,cb)
-{}
+Rook::Rook(string name, Color color, ChessBoard* cb):Chess(name,color,cb){}
 bool Rook::isValidMove(Chess* board_[8][8],int from_rank, int from_file, int to_rank, int to_file)
 {
   if(chess_board_->isOccupied(board_,to_rank, to_file))

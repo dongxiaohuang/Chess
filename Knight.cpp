@@ -1,7 +1,3 @@
-//
-// Created by Dongxiao Huang on 04/12/2017.
-//
-
 #include "Knight.h"
 
 Knight::Knight(string name, Color color, ChessBoard* cb):Chess(name,color,cb){}

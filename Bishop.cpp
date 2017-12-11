@@ -1,14 +1,9 @@
-//
-// Created by Dongxiao Huang on 04/12/2017.
-//
-
 #include "Bishop.h"
 
 Bishop::Bishop(string name, Color color, ChessBoard* cb):Chess(name,color,cb)
 {}
 bool Bishop::isValidMove(Chess* board_[8][8], int from_rank, int from_file, int to_rank, int to_file)
 {
-  // TODO: check if you can use the checkFourDirection;
   int square_diff;
   //check destination
   if(chess_board_->isOccupied(board_, to_rank, to_file))

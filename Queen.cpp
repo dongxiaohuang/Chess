@@ -1,7 +1,3 @@
-//
-// Created by Dongxiao Huang on 04/12/2017.
-//
-
 #include "Queen.h"
 #include "Rook.h"
 #include "Bishop.h"

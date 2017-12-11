@@ -1,7 +1,3 @@
-//
-// Created by Dongxiao Huang on 04/12/2017.
-//
-
 #include "Pawn.h"
 
 Pawn::Pawn(string name,Color color, ChessBoard* cb): Chess(name,color,cb){}
@@ -39,12 +35,8 @@ bool Pawn::isValidMove(Chess* board_[8][8],int from_rank, int from_file, int to_
   }
   //normal way to move
   if(color_ == WHITE && rank_step ==1)
-  {
     return true;
-  }
   if(color_ == BLACK && rank_step ==-1)
-  {
     return true;
-  }
    return false;
 }

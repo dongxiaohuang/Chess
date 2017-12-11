@@ -1,7 +1,3 @@
-//
-// Created by Dongxiao Huang on 04/12/2017.
-//
-
 #ifndef CHESS_CHESSBOARD_H
 #define CHESS_CHESSBOARD_H
 
@@ -44,6 +40,5 @@ public:
     bool canMove(string from, string to);
     bool canMove(Chess* board[8][8],Color current_player_color, int from_rank, int from_file, int to_rank, int to_file);
     bool staleMate();
-    // void makeMove(Color current_player_color, int from_rank, int from_file, int to_rank, int to_file);
   };
 #endif //CHESS_CHESSBOARD_H

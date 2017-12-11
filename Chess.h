@@ -1,7 +1,3 @@
-//
-// Created by Dongxiao Huang on 05/12/2017.
-//
-
 #ifndef CHESS_CHESS_H
 #define CHESS_CHESS_H
 
@@ -26,4 +22,4 @@ public:
     bool checkFourDirection(int from_rank, int from_file, int to_rank, int to_file, int rank_step_abs, int file_step_abs);
 };
 
-#endif //CHESS_CHESS_H
+#endif 

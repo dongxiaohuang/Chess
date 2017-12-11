@@ -1,7 +1,3 @@
-//
-// Created by Dongxiao Huang on 05/12/2017.
-//
-
 #include "Chess.h"
 
 Chess::Chess(string chess_name, Color chess_color, ChessBoard* cb)

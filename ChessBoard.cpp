@@ -1,7 +1,3 @@
-//
-// Created by Dongxiao Huang on 04/12/2017.
-//
-
 #include "ChessBoard.h"
 #include "Pawn.h"
 #include "King.h"
@@ -81,6 +77,7 @@ ChessBoard::ChessBoard()
   }
   resetBoard();
 }
+// print ChessBoard used for debug
 void ChessBoard::printBoard()
 {
   cout << '\t' ;
@@ -116,12 +113,13 @@ ChessBoard::~ChessBoard()
     for (int j = 0; j < 8; j++) {
       if(board_[i][j] != NULL)
         {
-          delete board_[i][j]; //TODO: check
+          delete board_[i][j];
           board_[i][j] = NULL;
         }
     }
   }
 }
+// function to make a mock move to check if this move will make self side piece in check
 bool ChessBoard::isValidMockMove(Color current_player_color, int from_rank, int from_file, int to_rank, int to_file)
 {
   //copy a new board
@@ -147,9 +145,6 @@ bool ChessBoard::isValidMockMove(Color current_player_color, int from_rank, int 
     mock_black_king_r = to_rank;
     mock_black_king_f = to_file;
   }
-
-  // check end
-  //update last_player_color
   //make movement
   board[to_rank][to_file] = board[from_rank][from_file];
   board[from_rank][from_file] = NULL;
@@ -161,6 +156,7 @@ bool ChessBoard::isValidMockMove(Color current_player_color, int from_rank, int 
   return true;
 }
 
+// function to check if the move is valid according to the chess rule
 bool ChessBoard::canMove(string from, string to)
 {
   int from_rank;
@@ -215,6 +211,7 @@ bool ChessBoard::canMove(string from, string to)
     return false;
   }
 }
+// check if this move is valid for mock move
 bool ChessBoard::canMove(Chess* board_[8][8], Color current_player_color, int from_rank, int from_file, int to_rank, int to_file)
 {
   bool can_move;
@@ -240,8 +237,7 @@ bool ChessBoard::canMove(Chess* board_[8][8], Color current_player_color, int fr
   }
       return false;
 }
-
-
+// function to submitMove from a position to another position
 void ChessBoard::submitMove(string from, string to)
 {
   int from_rank;
@@ -282,7 +278,7 @@ void ChessBoard::submitMove(string from, string to)
       }
     }
 }
-
+// function to makemove
 void ChessBoard::makeMove(string from, string to, int from_rank, int from_file, int to_rank, int to_file)
 {
   int take_output = 0; // if the piece take other piece then it will not output the move because it has already output
@@ -325,7 +321,7 @@ Color ChessBoard::getCoorColor(Chess* board_[8][8],int rank, int file)
 {
   return board_[rank][file] -> getColor();
 }
-
+// function to check if a side is in check
 bool ChessBoard::isInCheck(Chess* board[8][8], bool mock)
 {
   //initialize is_White_Checked is_Black_Checked =false
@@ -348,16 +344,12 @@ bool ChessBoard::isInCheck(Chess* board[8][8], bool mock)
             if(mock)
             {
               if(next_move_chess -> isValidMove(board,rank,file,mock_black_king_r, mock_black_king_f))
-              {
               is_Black_Checked = true;
-              }
             }
             else//real
             {
                 if(next_move_chess -> isValidMove(board,rank,file,black_king_rank_,black_king_file_))
-                {
                 is_Black_Checked = true;
-                }
             }
           }
         }
@@ -369,18 +361,13 @@ bool ChessBoard::isInCheck(Chess* board[8][8], bool mock)
             if(mock)
             {
               if(next_move_chess -> isValidMove(board,rank,file,mock_white_king_r, mock_white_king_f))
-              {
               is_White_Checked = true;
-              }
             }
             else// real move
             {
                 if(next_move_chess -> isValidMove(board,rank,file,white_king_rank_,white_king_file_))
-                {
                   is_White_Checked = true;
-                }
             }
-
           }
         }
       }
@@ -390,11 +377,7 @@ bool ChessBoard::isInCheck(Chess* board[8][8], bool mock)
     return true;
   return false;
 }
-
-
-
-
-
+// function to check if it is checkmate
 bool ChessBoard::checkMate(Color be_checked_color)
 {
     // copy a new board
@@ -407,7 +390,6 @@ bool ChessBoard::checkMate(Color be_checked_color)
         }
       }
     // board finish
-
     if(be_checked_color == WHITE)
     {
       for(int rank = 0; rank <8; ++rank)
@@ -425,7 +407,6 @@ bool ChessBoard::checkMate(Color be_checked_color)
                     return false;
                 }
               }
-
             }
           }
         }
@@ -448,7 +429,6 @@ bool ChessBoard::checkMate(Color be_checked_color)
                     return false;
                 }
               }
-
             }
           }
         }
@@ -457,7 +437,7 @@ bool ChessBoard::checkMate(Color be_checked_color)
 
   return true;
 }
-
+//function to check if it is stalemate
 bool ChessBoard::staleMate()
 {
   // copy a new board

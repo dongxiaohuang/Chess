@@ -1,7 +1,3 @@
-//
-// Created by Dongxiao Huang on 04/12/2017.
-//
-
 #ifndef CHESS_HELPER_H
 #define CHESS_HELPER_H
 

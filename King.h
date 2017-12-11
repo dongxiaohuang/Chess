@@ -1,7 +1,3 @@
-//
-// Created by Dongxiao Huang on 04/12/2017.
-//
-
 #ifndef CHESS_KING_H
 #define CHESS_KING_H
 #include "Chess.h"
