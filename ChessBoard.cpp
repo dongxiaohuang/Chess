@@ -32,7 +32,7 @@ void ChessBoard::resetBoard()
   for(int file = 0; file <= 7; file++)
     board_[6][file] = new Pawn("Pawn", BLACK, this);//rank = 7
 
-  // // add WHITE Rook
+  // add WHITE Rook
   board_[0][0] = new Rook("Rook",WHITE, this);
   board_[0][7] = new Rook("Rook",WHITE, this);
   // add BLACK Rook
@@ -83,8 +83,6 @@ ChessBoard::ChessBoard()
 }
 void ChessBoard::printBoard()
 {
-   // Color::Modifier red(Color::31);
-   // Color::Modifier def(Color::49);
   cout << '\t' ;
 
   for(int file=0; file<=7; ++file)
@@ -119,9 +117,6 @@ ChessBoard::~ChessBoard()
       if(board_[i][j] != NULL)
         {
           delete board_[i][j]; //TODO: check
-          /*ChessBoard.cpp:65:11: warning: delete called on 'Chess' that is abstract but has non-virtual destructor [-Wdelete-non-virtual-dtor]
-          delete board[i][j];*/
-          // make the baseclass destructor virtual and must implement{}
           board_[i][j] = NULL;
         }
     }
@@ -158,17 +153,7 @@ bool ChessBoard::isValidMockMove(Color current_player_color, int from_rank, int 
   //make movement
   board[to_rank][to_file] = board[from_rank][from_file];
   board[from_rank][from_file] = NULL;
-  // if(board[2][2]!= NULL)
-  // cout<< "C3" << board[2][2]->getColor()<<" "<<board[2][2]->getName()<< endl;
-  // if(board[3][1] == NULL) cout << "[3][1] null" << endl;
-  // printBoard(board);
   isChecked = isInCheck(board, true);
-  // cout << "now the moves color is "<<current_player_color<<endl;
-  // cout << "is_Black_Checked is "<<is_Black_Checked<<endl;
-  // cout << "mock king r is "<<mock_black_king_r<<endl;
-  // cout << "mock king f is "<<mock_black_king_f<<endl;
-  // cout << "mock king r is "<<mock_white_king_r<<endl;
-  // cout << "mock king f is "<<mock_white_king_f<<endl;
   if(current_player_color == WHITE && is_White_Checked)
     return false;
   if(current_player_color == BLACK && is_Black_Checked)
@@ -278,7 +263,6 @@ void ChessBoard::submitMove(string from, string to)
             if(checkMate(WHITE))
               {
                 cout << "White is in checkMate"<< endl;
-              // exit(GAME_OVER);
             }
             else  cout <<"White is in check" << endl; // the enemy
           }
@@ -287,10 +271,14 @@ void ChessBoard::submitMove(string from, string to)
             if(checkMate(BLACK))
               {
                 cout << "Black is in checkmate"<<endl;
-                // exit(GAME_OVER);
               }
             else cout <<"Black is in check" << endl; // the enemy
           }
+      }else
+      {
+        //check if it is stalemate
+        if(staleMate())
+          cout << "the game ends with a stalemate" << endl;
       }
     }
 }
@@ -361,19 +349,14 @@ bool ChessBoard::isInCheck(Chess* board[8][8], bool mock)
             {
               if(next_move_chess -> isValidMove(board,rank,file,mock_black_king_r, mock_black_king_f))
               {
-              //cout <<"Black is in check" << endl; // the enemy
               is_Black_Checked = true;
-              // white_enemy_ = board_[rank][file];
               }
             }
             else//real
             {
                 if(next_move_chess -> isValidMove(board,rank,file,black_king_rank_,black_king_file_))
                 {
-                //cout <<"Black is in check" << endl; // the enemy
                 is_Black_Checked = true;
-                // white_enemy_r = rank;
-                // white_enemy_f = file;
                 }
             }
           }
@@ -387,19 +370,14 @@ bool ChessBoard::isInCheck(Chess* board[8][8], bool mock)
             {
               if(next_move_chess -> isValidMove(board,rank,file,mock_white_king_r, mock_white_king_f))
               {
-              //cout <<"Black is in check" << endl; // the enemy
               is_White_Checked = true;
-              // white_enemy_ = board_[rank][file];
               }
             }
             else// real move
             {
                 if(next_move_chess -> isValidMove(board,rank,file,white_king_rank_,white_king_file_))
                 {
-                  // cout <<"White is in check" << endl; // the enemy
                   is_White_Checked = true;
-                  // black_enemy_r = rank;
-                  // black_enemy_f = file;
                 }
             }
 
@@ -478,4 +456,38 @@ bool ChessBoard::checkMate(Color be_checked_color)
     }
 
   return true;
+}
+
+bool ChessBoard::staleMate()
+{
+  // copy a new board
+  Chess* newboard[8][8] ;// copy a new board
+  for(int rank = 0; rank <8; ++rank)
+    {
+      for(int file = 0; file <8; ++file)
+      {
+        newboard[rank][file] = board_[rank][file];
+      }
+    }
+  // board finish
+
+  for(int rank = 0; rank < 8; ++rank)
+    {
+      for(int file = 0; file < 8; ++file)
+      {
+        if(newboard[rank][file] == NULL) continue;
+        if(newboard[rank][file]->getColor() != current_player_color) //check if  next player have any valid move
+        {
+          for (int i = 0; i < 8; i++)
+          {
+            for (int j = 0 ; j < 8; j++)
+            {
+              if(canMove(newboard, newboard[rank][file]->getColor(), rank, file, i, j))
+                return false;
+            }
+          }
+        }
+      }
+    }
+    return true;
 }
