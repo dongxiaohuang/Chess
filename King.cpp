@@ -14,5 +14,9 @@ bool King::isValidMove(Chess* board_[8][8],int from_rank, int from_file, int to_
     return true;
   if((file_diff == 0) && (rank_diff == -1 || rank_diff == 1)) // move one square up or down
     return true;
+  if((rank_diff == 1) && (file_diff == -1 || file_diff == 1)) // move one square up or down
+    return true;
+  if((rank_diff == -1) && (file_diff == -1 || file_diff == 1)) // move one square up or down
+    return true;
   return false;
 }
